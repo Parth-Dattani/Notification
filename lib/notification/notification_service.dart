@@ -109,14 +109,14 @@ class NotificationService {
           androidAllowWhileIdle: true,
           uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,          // daily basis
           //daily basis
-           // matchDateTimeComponents: DateTimeComponents.time
+          //matchDateTimeComponents: DateTimeComponents.time
 
           //weekly basis
           //matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime
       );
 
 
-  //try periodically
+  //periodically Notification
   static showPeriodicallyNotification({
     int id = 0,
     String? title,
@@ -133,7 +133,7 @@ class NotificationService {
       );
 
   //this use when set Daily basis notification set
-  static  tz.TZDateTime _schedulDaily(Time time){
+  static  tz.TZDateTime _scheduleDaily(Time time){
     final now = tz.TZDateTime.now(tz.getLocation('America/Detroit'));
     final scheduleDate = tz.TZDateTime(
         tz.getLocation('America/Detroit'),
@@ -151,7 +151,7 @@ class NotificationService {
 
   //this use when set Week basis notification set
   static  tz.TZDateTime _scheduleweekly(Time time, {required List<int> days}) {
-    tz.TZDateTime scheduledDate = _schedulDaily(time);
+    tz.TZDateTime scheduledDate = _scheduleDaily(time);
 
     while (!days.contains(scheduledDate.weekday)) {
       scheduledDate = scheduledDate.add(Duration(days: 1));
@@ -159,9 +159,7 @@ class NotificationService {
     return scheduledDate;
   }
 
-
-
-
+  //this methode is use for any local notification
   static Future notificationDetails() async {
     //final bigPicture = ImagePath.profileLogo;
     return const NotificationDetails(
