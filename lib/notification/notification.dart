@@ -94,7 +94,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   scheduleDate: DateTime.now().add(const Duration(seconds: 10)),
                 );
               }, child: const Text("Notification periodically")),
-              //ElevatedButton(onPressed: () {}, child: const Text("Cancel All Notification",))
+              ElevatedButton(onPressed: () {
+                NotificationService.showScheduleNotification(
+                  title: 'Good Evening',
+                  body: 'How R U, users This is Daily Notification',
+                  payload: 'good_morning',
+                  scheduleDate: DateTime.now().add(const Duration(seconds: 10)),
+                );
+              }, child: const Text("Notification Daily")),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(onPressed: () {
+                NotificationService.cancelSingleNotifications();
+              }, child: const Text("Cancel  Notification",)),
+              ElevatedButton(onPressed: () {
+                NotificationService.cancelAllNotifications();
+              }, child: const Text("Cancel All  Notification",))
             ],
           ),
         ],

@@ -17,14 +17,21 @@ class NotificationService {
   static final onNotifications = BehaviorSubject<String?>();
 
   static Future init({bool initScheduled = false}) async {
-    const initializationSettingsAndroid = AndroidInitializationSettings('launch_background');
-    const initializationSettingsIOS = DarwinInitializationSettings();
+    const initializationSettingsAndroid = AndroidInitializationSettings('ic_notification');
+    const initializationSettingsIOS = DarwinInitializationSettings(
+      requestSoundPermission: true,
+      requestBadgePermission: true,
+      requestAlertPermission: true,
+    );
     const initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid,
         iOS: initializationSettingsIOS);
-
+    void onDidReceiveLocalNotification(
+        int id, String? title, String? body, String? payload) {
+      print('id $id');
+    }
     // void onSelect(NotificationResponse notificationResponse) {
-    //   // ignore: avoid_print
+    //
     //   print('notification(${notificationResponse.id}) '
     //       'action tapped: ''${notificationResponse.actionId} with'
     //       ' payload res: ${notificationResponse.payload}');
@@ -39,28 +46,31 @@ class NotificationService {
       print("dfgdfg : $onNotifications");
     }*/
 
-    await notifications.initialize(
-      initializationSettings,
-      onDidReceiveNotificationResponse: (payload) {
-        if (payload != null && payload.toString().isNotEmpty) {
-          onNotifications.add(payload.toString());
-          print("onNotifications value : $onNotifications");
-        }
-      },
-      //selectNotification(payload)async {}
-    );
+    // await notifications.initialize(
+    //   initializationSettings,
+    //   onDidReceiveNotificationResponse: (payload) {
+    //     if (payload != null && payload.toString().isNotEmpty) {
+    //       onNotifications.add(payload.toString());
+    //       print("onNotifications value : $onNotifications");
+    //     }
+    //   },
+    //   //selectNotification(payload)async {}
+    // );
 
     await notifications.initialize(
       initializationSettings,
+
       onDidReceiveNotificationResponse: (payload) async {
         onNotifications.add(payload.toString());
+        print("onNotifications value : $onNotifications");
       },
+
       // onSelectNotification: selectNotification
     );
 
     if(initScheduled){
       tz.initializeTimeZones();
-      final location = await FlutterNativeTimezone.getAvailableTimezones();
+      final location = await FlutterNativeTimezone.getLocalTimezone();
       print("location : ${location.toString()}");
       print("location India: ${location[1]}");
       print("location India 2: ${location[2]}");
@@ -88,7 +98,7 @@ class NotificationService {
 
   //ScheduleNotification
   static showScheduleNotification({
-    int id = 0,
+    int id = 1,
     String? title,
     String? body,
     String? payload,
@@ -97,13 +107,13 @@ class NotificationService {
       notifications.zonedSchedule(
           id, title, body,
           //daily Basis
-          //_schedulDaily(const Time(11)),
+          _scheduleDaily(const Time(6)),
 
           // weekly
-          //_scheduleweekly(Time(3),days:[DateTime.monday, DateTime.friday]),
+          //_scheduleWeekly(Time(5,16,0),days:[DateTime.monday, DateTime.wednesday, DateTime.friday]),
 
           //for spacific time
-          tz.TZDateTime.from(scheduleDate,tz.getLocation('America/Detroit')),
+          //tz.TZDateTime.from(scheduleDate,tz.getLocation('America/Detroit')),
           await notificationDetails(),
           payload: payload,
           androidAllowWhileIdle: true,
@@ -115,10 +125,35 @@ class NotificationService {
           //matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime
       );
 
+  //DailyScheduleNotification
+/*  static showDailyScheduleNotification({
+    int id = 12,
+    String? title,
+    String? body,
+    String? payload,
+    required DateTime scheduleDate,
+  }) async =>
+      notifications.showDailyAtTime(
+          id, title, body,
+          //daily Basis
+          const Time(4,14,0),
+          //_scheduleDaily(const Time(3,55,0)),
+
+
+          await notificationDetails(),
+          payload: payload,
+         // androidAllowWhileIdle: true,
+          //uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,          // daily basis
+          //daily basis
+          //matchDateTimeComponents: DateTimeComponents.time
+
+        //weekly basis
+        //matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime
+      );*/
 
   //periodically Notification
   static showPeriodicallyNotification({
-    int id = 0,
+    int id = 2,
     String? title,
     String? body,
     String? payload,
@@ -134,15 +169,10 @@ class NotificationService {
 
   //this use when set Daily basis notification set
   static  tz.TZDateTime _scheduleDaily(Time time){
-    final now = tz.TZDateTime.now(tz.getLocation('America/Detroit'));
-    final scheduleDate = tz.TZDateTime(
-        tz.getLocation('America/Detroit'),
-      now.year,
-      now.month,
-      now.day,
-      time.hour,
-      time.minute,
-      time.second,
+    final now = tz.TZDateTime.now(tz.local /*  getLocation('Asia/Kolkata')*/);
+    final scheduleDate = tz.TZDateTime(tz.local/*tz.getLocation('Asia/Kolkata')*/,
+      now.year, now.month, now.day,
+      time.hour, time.minute, time.second,
     );
     return scheduleDate.isBefore(now)
         ? scheduleDate.add(const Duration(days: 1))
@@ -150,14 +180,20 @@ class NotificationService {
   }
 
   //this use when set Week basis notification set
-  static  tz.TZDateTime _scheduleweekly(Time time, {required List<int> days}) {
+  static  tz.TZDateTime _scheduleWeekly(Time time, {required List<int> days}) {
     tz.TZDateTime scheduledDate = _scheduleDaily(time);
 
     while (!days.contains(scheduledDate.weekday)) {
-      scheduledDate = scheduledDate.add(Duration(days: 1));
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
     }
     return scheduledDate;
   }
+
+  //cancel notification pass id which notification you want to clear
+  static void cancelSingleNotifications() => notifications.cancel(1);
+  //cancel All notification
+  static void cancelAllNotifications() => notifications.cancelAll();
+
 
   //this methode is use for any local notification
   static Future notificationDetails() async {
@@ -170,6 +206,9 @@ class NotificationService {
         priority: Priority.max,
         playSound: true,
         ticker: 'ticker',
+        enableLights: true,
+        channelShowBadge: true,
+
         // largeIcon: DrawableResourceAndroidBitmap('justwater'),
         // styleInformation: BigPictureStyleInformation(
         //   FilePathAndroidBitmap('justwater'),

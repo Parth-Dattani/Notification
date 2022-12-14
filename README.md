@@ -17,3 +17,17 @@ samples, guidance on mobile development, and a full API reference.
 
 #parth-dattani
 - LocalNotification
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+    - showNotification
+    - showScheduleNotification
+    - showPeriodicallyNotification
+    - scheduleDaily
+    - scheduleWeekly
+    - cancelSingleNotifications
+    - cancelAllNotifications
