@@ -109,7 +109,7 @@ class NotificationService {
           androidAllowWhileIdle: true,
           uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,          // daily basis
           //daily basis
-          //matchDateTimeComponents: DateTimeComponents.time
+          matchDateTimeComponents: DateTimeComponents.time
 
           //weekly basis
           //matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime
