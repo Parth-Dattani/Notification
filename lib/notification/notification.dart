@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'notification_service.dart';
 import 'second_notification.dart';
 
@@ -18,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
     listenNotification();
 
     NotificationService.showScheduleNotification(
+            id: 1,
             title: 'Hello',
             body: 'Good Morning',
             payload: 'good_morning',
@@ -28,11 +30,17 @@ class _MyHomePageState extends State<MyHomePage> {
     NotificationService.onNotifications.stream.listen(onClickedNotification);
   }
 
-  void onClickedNotification(String? payload) =>
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => MySecondScreen(
-                payload: payload,
-              )));
+  void onClickedNotification(String? payload) {
+    if(payload != null && payload.isNotEmpty){
+      print("payload value $payload");
+    }
+
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) =>
+            MySecondScreen(
+              payload: payload,
+            )));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                 onPressed: () {
                   NotificationService.showNotification(
+                    id: 0,
                     title: "E-commerce",
                     body: "Hello, user this for only Testing purpose.",
-                    payload: "E-commerce",
+                    //payload: "E-commerce",
                   );
                 },
                 child: const Text("Notification Now"),
@@ -65,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                   onPressed: () {
                     NotificationService.showScheduleNotification(
+                        id: 1,
                         title: 'Good Morning',
                         body: 'How R U, User',
                         payload: 'good_morning',
@@ -88,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               ElevatedButton(onPressed: () {
                 NotificationService.showPeriodicallyNotification(
+                  id: 2,
                   title: 'Good Morning',
                   body: 'How R U, users This is Periodically Notification',
                   payload: 'good_morning',
@@ -95,12 +106,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               }, child: const Text("Notification periodically")),
               ElevatedButton(onPressed: () {
-                NotificationService.showScheduleNotification(
-                  title: 'Good Evening',
-                  body: 'How R U, users This is Daily Notification',
-                  payload: 'good_morning',
-                  scheduleDate: DateTime.now().add(const Duration(seconds: 10)),
+                NotificationService.showDailyAtTime(
+                    id: 1,
+                    title: 'Good Evening new daily',
+                    body: 'How R U, users This is Daily Notification 2',
+                    payload: 'good_morning',
+                  //   scheduleDate: DateTime.now
                 );
+                // NotificationService.showScheduleNotification(
+                //   id: 1,
+                //   title: 'Good Evening',
+                //   body: 'How R U, users This is Daily Notification',
+                //   payload: 'good_morning',
+                //   scheduleDate: DateTime.now().add(const Duration(seconds: 10)),
+                //);
               }, child: const Text("Notification Daily")),
             ],
           ),
@@ -115,6 +134,27 @@ class _MyHomePageState extends State<MyHomePage> {
               }, child: const Text("Cancel All  Notification",))
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(onPressed: () {
+                NotificationService.showGroupedNotifications(title: "parth dattani");
+              }, child: const Text("Group  Notification",)),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(onPressed: () {
+                NotificationService.getPendingNotificationCount();
+                print("Pebding press");
+              }, child: const Text("Pending Notification",)),
+
+              ElevatedButton(onPressed: () {
+                NotificationService.ActiveReq();
+              }, child: const Text("Active Notification",)),
+            ],
+          )
         ],
       ),
     );

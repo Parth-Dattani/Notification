@@ -31,3 +31,6 @@ samples, guidance on mobile development, and a full API reference.
     - scheduleWeekly
     - cancelSingleNotifications
     - cancelAllNotifications
+
+#for (showDailyAtTime)
+https://itnext.io/local-notifications-in-flutter-6136235e1b51

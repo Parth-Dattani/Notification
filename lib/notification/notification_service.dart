@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:rxdart/rxdart.dart';
@@ -5,7 +8,11 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService {
-  static final NotificationService _notificationService = NotificationService._internal();
+  static final notifications = FlutterLocalNotificationsPlugin();
+  static final onNotifications = BehaviorSubject<String?>();
+
+  static final NotificationService _notificationService =
+      NotificationService._internal();
 
   factory NotificationService() {
     return _notificationService;
@@ -13,19 +20,17 @@ class NotificationService {
 
   NotificationService._internal();
 
-  static final notifications = FlutterLocalNotificationsPlugin();
-  static final onNotifications = BehaviorSubject<String?>();
-
   static Future init({bool initScheduled = false}) async {
-    const initializationSettingsAndroid = AndroidInitializationSettings('ic_notification');
+    const initializationSettingsAndroid =
+        AndroidInitializationSettings('ic_notification');
     const initializationSettingsIOS = DarwinInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
+      defaultPresentAlert: true,
     );
     const initializationSettings = InitializationSettings(
-        android: initializationSettingsAndroid,
-        iOS: initializationSettingsIOS);
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     void onDidReceiveLocalNotification(
         int id, String? title, String? body, String? payload) {
       print('id $id');
@@ -59,16 +64,15 @@ class NotificationService {
 
     await notifications.initialize(
       initializationSettings,
-
       onDidReceiveNotificationResponse: (payload) async {
         onNotifications.add(payload.toString());
         print("onNotifications value : $onNotifications");
+        print("pay load on Did Receive $payload");
       },
-
       // onSelectNotification: selectNotification
     );
 
-    if(initScheduled){
+    if (initScheduled) {
       tz.initializeTimeZones();
       final location = await FlutterNativeTimezone.getLocalTimezone();
       print("location : ${location.toString()}");
@@ -79,100 +83,214 @@ class NotificationService {
     }
   }
 
-  static Future selectNotification(String payload) async {
+  void selectNotification(String payload) async {
     //Handle notification tapped logic here
     /*onNotifications.add(payload);*/
+    print(payload);
   }
 
-
-  // Local Notification
+  //1. Local Notification
   static showNotification({
-    int id = 0,
+    required int id,
     String? title,
     String? body,
     String? payload,
   }) async =>
-      notifications.show(id, title, body, await notificationDetails(),
-          payload: payload);
+      notifications.show(id, title, body, payload: payload, await notificationDetails());
 
+  static/* Future<void>*/ showDailyAtTime({
+    required int id,
+    String? title,
+    String? body,
+    String? payload,
+  }) async {
+    var time = const Time(11, 30, 0); // var androidChannelSpecifics = const AndroidNotificationDetails(
+    //   'CHANNEL_ID 4',
+    //   'CHANNEL_NAME 4',
+    //   importance: Importance.max,
+    //   priority: Priority.high,
+    // );
+    // var iosChannelSpecifics = DarwinNotificationDetails();
+    // var platformChannelSpecifics = NotificationDetails(android: androidChannelSpecifics,iOS:  iosChannelSpecifics);
+    await notificationDetails();
+    await notifications.showDailyAtTime(
+      0,
+      'Test Title at ${time.hour}:${time.minute}.${time.second}',
+      'Test Body', //null
+      time,
+      await notificationDetails(),
+      payload: 'Test Payload',
+    );
+  }
 
-  //ScheduleNotification
+  //2. ScheduleNotification
   static showScheduleNotification({
-    int id = 1,
+    required int id,
     String? title,
     String? body,
     String? payload,
     required DateTime scheduleDate,
   }) async =>
       notifications.zonedSchedule(
-          id, title, body,
-          //daily Basis
-          _scheduleDaily(const Time(6)),
+          id,
+          title,
+          body,
+          //2.1 daily Basis
+          _scheduleDaily(const Time(11)),
 
-          // weekly
+          //2.2 weekly
           //_scheduleWeekly(Time(5,16,0),days:[DateTime.monday, DateTime.wednesday, DateTime.friday]),
 
-          //for spacific time
+          //2.3 for spacific time
           //tz.TZDateTime.from(scheduleDate,tz.getLocation('America/Detroit')),
           await notificationDetails(),
           payload: payload,
           androidAllowWhileIdle: true,
-          uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,          // daily basis
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime, // daily basis
           //daily basis
           matchDateTimeComponents: DateTimeComponents.time
 
           //weekly basis
           //matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime
-      );
+          );
 
-  //DailyScheduleNotification
-/*  static showDailyScheduleNotification({
-    int id = 12,
+
+
+  static ActiveReq({
     String? title,
-    String? body,
-    String? payload,
-    required DateTime scheduleDate,
-  }) async =>
-      notifications.showDailyAtTime(
-          id, title, body,
-          //daily Basis
-          const Time(4,14,0),
-          //_scheduleDaily(const Time(3,55,0)),
+    //var pendingNotificationRequest  =
+  }) async { notifications.getActiveNotifications();
+  print("Active Notification : ${notifications.getActiveNotifications()}");
+  }
 
+  static Future<List<PendingNotificationRequest>> getPendingNotifications () async {
+    print("pending Notification : ${notifications.pendingNotificationRequests}");
+    return await notifications.pendingNotificationRequests();
 
-          await notificationDetails(),
-          payload: payload,
-         // androidAllowWhileIdle: true,
-          //uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,          // daily basis
-          //daily basis
-          //matchDateTimeComponents: DateTimeComponents.time
+  }
 
-        //weekly basis
-        //matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime
-      );*/
+  static Future<int> getPendingNotificationCount() async {
+    List<PendingNotificationRequest> count =
+    await notifications.pendingNotificationRequests();
+    print("pending count ${count.length}");
+    return count.length;
+  }
 
-  //periodically Notification
+  static pendingReq({
+    String? title,
+    //var pendingNotificationRequest  =
+}) async { notifications.pendingNotificationRequests();
+
+  print("pending Notification : ${notifications.pendingNotificationRequests}");
+  }
+
+  //3. periodically Notification
   static showPeriodicallyNotification({
-    int id = 2,
+    required int id,
     String? title,
     String? body,
     String? payload,
     required DateTime scheduleDate,
   }) async =>
       notifications.periodicallyShow(
-        id, title, body,
+        id,
+        title,
+        body,
         RepeatInterval.everyMinute,
         await notificationDetails(),
         payload: payload,
         androidAllowWhileIdle: true,
       );
 
+  //4. group
+  static showGroupedNotifications({
+    required String title,
+  }) async {
+    final platformChannelSpecifics = await notificationDetails();
+    final groupedPlatformChannelSpecifics = await _groupedNotificationDetails();
+    await notifications.show(
+      0,
+      "group 1",
+      "Hello",
+      platformChannelSpecifics,
+    );
+    await notifications.show(
+      1,
+      "group 1",
+      "Good Morning",
+      platformChannelSpecifics,
+    );
+    await notifications.show(
+      3,
+      "group 1",
+      "How Are You?",
+      platformChannelSpecifics,
+    );
+    await notifications.show(
+      4,
+      "group 2",
+      "Hii",
+      Platform.isIOS
+          ? groupedPlatformChannelSpecifics
+          : platformChannelSpecifics,
+    );
+    await notifications.show(
+      5,
+      "group 2",
+      "Are You There",
+      Platform.isIOS
+          ? groupedPlatformChannelSpecifics
+          : platformChannelSpecifics,
+    );
+    await notifications.show(
+      6,
+      Platform.isIOS ? "group 2" : "Attention",
+      Platform.isIOS ? "Third drink" : "5 missed drinks",
+      groupedPlatformChannelSpecifics,
+    );
+  }
+
+  //gropu ss2222
+  static _groupedNotificationDetails() {
+    const List<String> lines = <String>[
+      'group 1 Hello',
+      'group 1   Good Morning',
+      'group 1   How Are You?',
+      'group 2 Hii',
+      'group 2   Are You There'
+    ];
+
+    const InboxStyleInformation inboxStyleInformation = InboxStyleInformation(
+        lines,
+        contentTitle: '5 messages',
+        summaryText: 'missed messages');
+    AndroidNotificationDetails androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+      'channel id',
+      'channel name',
+      groupKey: 'com.example.flutter_push_notifications',
+      channelDescription: 'channel description',
+      setAsGroupSummary: true,
+      importance: Importance.max,
+      priority: Priority.max,
+      playSound: true,
+      ticker: 'ticker',
+      styleInformation: inboxStyleInformation,
+      color: Color(0xff2196f3),
+    );
+  }
+
   //this use when set Daily basis notification set
-  static  tz.TZDateTime _scheduleDaily(Time time){
+  static tz.TZDateTime _scheduleDaily(Time time) {
     final now = tz.TZDateTime.now(tz.local /*  getLocation('Asia/Kolkata')*/);
-    final scheduleDate = tz.TZDateTime(tz.local/*tz.getLocation('Asia/Kolkata')*/,
-      now.year, now.month, now.day,
-      time.hour, time.minute, time.second,
+    final scheduleDate = tz.TZDateTime(
+      tz.local /*tz.getLocation('Asia/Kolkata')*/,
+      now.year,
+      now.month,
+      now.day,
+      time.hour,
+      time.minute,
+      time.second,
     );
     return scheduleDate.isBefore(now)
         ? scheduleDate.add(const Duration(days: 1))
@@ -180,7 +298,7 @@ class NotificationService {
   }
 
   //this use when set Week basis notification set
-  static  tz.TZDateTime _scheduleWeekly(Time time, {required List<int> days}) {
+  static tz.TZDateTime _scheduleWeekly(Time time, {required List<int> days}) {
     tz.TZDateTime scheduledDate = _scheduleDaily(time);
 
     while (!days.contains(scheduledDate.weekday)) {
@@ -191,32 +309,35 @@ class NotificationService {
 
   //cancel notification pass id which notification you want to clear
   static void cancelSingleNotifications() => notifications.cancel(1);
+
   //cancel All notification
   static void cancelAllNotifications() => notifications.cancelAll();
-
 
   //this methode is use for any local notification
   static Future notificationDetails() async {
     //final bigPicture = ImagePath.profileLogo;
-    return const NotificationDetails(
-      android: AndroidNotificationDetails(
-        'channel id',
-        'channel name',
-        importance: Importance.max,
-        priority: Priority.max,
-        playSound: true,
-        ticker: 'ticker',
-        enableLights: true,
-        channelShowBadge: true,
 
-        // largeIcon: DrawableResourceAndroidBitmap('justwater'),
-        // styleInformation: BigPictureStyleInformation(
-        //   FilePathAndroidBitmap('justwater'),
-        //   hideExpandedLargeIcon: false,
-        // ),
-        // color:  Color(0xff2196f3),
-      ),
+    const androidNotificationDetails = AndroidNotificationDetails(
+      'channel id',
+      'channel name',
+      importance: Importance.max,
+      priority: Priority.max,
+      playSound: true,
+      ticker: 'ticker',
+      enableLights: true,
+      channelShowBadge: true,
+
+      // largeIcon: DrawableResourceAndroidBitmap('justwater'),
+      // styleInformation: BigPictureStyleInformation(
+      //   FilePathAndroidBitmap('justwater'),
+      //   hideExpandedLargeIcon: false,
+      // ),
+      // color:  Color(0xff2196f3),
     );
+    const iosNotificationDetails = DarwinNotificationDetails();
+    return const NotificationDetails(
+        android: androidNotificationDetails,
+        iOS: iosNotificationDetails);
   }
 }
 
@@ -263,4 +384,37 @@ class NotificationService {
       behaviorSubject.add(payload);
     }
   }
+}*/
+
+////shoGroup
+/*static _groupedNotificationDetails() {
+  const List<String> lines = <String>[
+    'group 1 First drink',
+    'group 1   Second drink',
+    'group 1   Third drink',
+    'group 2 First drink',
+    'group 2   Second drink'
+  ];
+
+  const InboxStyleInformation inboxStyleInformation = InboxStyleInformation(
+      lines,
+      contentTitle: '5 messages',
+      summaryText: 'missed drinks');
+  AndroidNotificationDetails androidPlatformChannelSpecifics =
+  const AndroidNotificationDetails(
+    'channel id',
+    'channel name',
+    groupKey: 'com.example.flutter_push_notifications',
+    channelDescription: 'channel description',
+    setAsGroupSummary: true,
+    importance: Importance.max,
+    priority: Priority.max,
+    playSound: true,
+    ticker: 'ticker',
+    styleInformation: inboxStyleInformation,
+    color: Color(0xff2196f3),
+  );
+
+
+
 }*/
