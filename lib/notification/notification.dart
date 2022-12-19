@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     NotificationService.showScheduleNotification(
                         id: 1,
-                        title: 'Good Morning',
+                        title: 'Good Morning 10:54',
                         body: 'How R U, User',
                         payload: 'good_morning',
                         scheduleDate: DateTime.now().add(const Duration(seconds: 10)),

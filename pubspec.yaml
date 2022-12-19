@@ -42,6 +42,7 @@ dependencies:
   rxdart: ^0.27.5
   flutter_native_timezone: ^2.0.0
   path_provider: ^2.0.11
+  http: ^0.13.4
 
 
 dev_dependencies:

@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -79,7 +80,7 @@ class NotificationService {
       print("location India: ${location[1]}");
       print("location India 2: ${location[2]}");
       //tz.setLocalLocation(tz.getLocation('America/Detroit'));
-      tz.setLocalLocation(tz.getLocation(location[2].toString()));
+      tz.setLocalLocation(tz.getLocation(location.toString()));
     }
   }
 
@@ -104,7 +105,7 @@ class NotificationService {
     String? body,
     String? payload,
   }) async {
-    var time = const Time(11, 30, 0); // var androidChannelSpecifics = const AndroidNotificationDetails(
+    var time = const Time(10, 59, 0); // var androidChannelSpecifics = const AndroidNotificationDetails(
     //   'CHANNEL_ID 4',
     //   'CHANNEL_NAME 4',
     //   importance: Importance.max,
@@ -114,12 +115,12 @@ class NotificationService {
     // var platformChannelSpecifics = NotificationDetails(android: androidChannelSpecifics,iOS:  iosChannelSpecifics);
     await notificationDetails();
     await notifications.showDailyAtTime(
-      0,
+      id,
       'Test Title at ${time.hour}:${time.minute}.${time.second}',
-      'Test Body', //null
+      body, //null
       time,
       await notificationDetails(),
-      payload: 'Test Payload',
+      payload: payload,
     );
   }
 
@@ -136,7 +137,7 @@ class NotificationService {
           title,
           body,
           //2.1 daily Basis
-          _scheduleDaily(const Time(11)),
+          _scheduleDaily(const Time(10,56,00)),
 
           //2.2 weekly
           //_scheduleWeekly(Time(5,16,0),days:[DateTime.monday, DateTime.wednesday, DateTime.friday]),
