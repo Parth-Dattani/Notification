@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:path_provider/path_provider.dart';
@@ -90,6 +91,25 @@ class NotificationService {
     print(payload);
   }
 
+  static awesomeNoti()async{
+    String time = await AwesomeNotifications().getLocalTimeZoneIdentifier();
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 12,
+            channelKey: 'channelKey1',
+          title: 'Awesome',
+          body: 'this is Awesome Notification',
+          bigPicture: "https://media.istockphoto.com/id/1194343598/vector/bright-modern-mega-sale-banner-for-advertising-discounts-vector-template-for-design-special.jpg?s=612x612&w=0&k=20&c=oxeukxA1kVLBuLtcbipu_94blsVGs9eU0V_x70wkVzA=",
+          notificationLayout: NotificationLayout.BigPicture
+        ),
+     //      schedule: NotificationInterval(
+     //     interval: 5,
+     //     timeZone: time,
+     //     repeats: true
+     // )
+     );
+  }
+
   //1. Local Notification
   static showNotification({
     required int id,
@@ -123,6 +143,7 @@ class NotificationService {
       payload: payload,
     );
   }
+
 
   //2. ScheduleNotification
   static showScheduleNotification({

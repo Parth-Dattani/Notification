@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
 import 'notification/notification.dart';
@@ -5,6 +6,20 @@ import 'notification/notification_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  AwesomeNotifications().initialize(
+      null,
+     [
+      NotificationChannel(
+          channelKey: 'channelKey1',
+          channelName: 'Notification',
+          channelDescription: 'channelDescription demo',
+          ledColor: Colors.red,
+          defaultColor: Colors.teal,
+        playSound: true,
+        enableVibration: true,
+      )
+     ]
+  );
   NotificationService.init();
   runApp(const MyApp());
 }

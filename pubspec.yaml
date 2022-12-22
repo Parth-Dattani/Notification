@@ -43,6 +43,7 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   path_provider: ^2.0.11
   http: ^0.13.4
+  awesome_notifications: ^0.7.4+1
 
 
 dev_dependencies:
