@@ -12,19 +12,21 @@ class MySecondScreen extends StatelessWidget {
         title: const Text("Second Notification Demo"),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 100),
-              child: Image.asset(
-                "assets/Images/profile.jpg",
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 100),
+                child: Image.asset(
+                  "assets/Images/profile.jpg",
+                ),
               ),
-            ),
-            Text(payload ?? ''),
-            const Text('payload'),
-          ],
+              Text(payload ?? ''),
+              const Text('payload'),
+            ],
+          ),
         ),
       ),
     );

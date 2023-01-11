@@ -17,6 +17,8 @@ void main() {
           defaultColor: Colors.teal,
         playSound: true,
         enableVibration: true,
+        soundSource: 'resource://raw/res_custom_notification',
+        //soundSource: 'resource://raw/whistle',
       )
      ]
   );

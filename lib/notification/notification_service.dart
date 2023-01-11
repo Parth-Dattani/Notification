@@ -80,8 +80,8 @@ class NotificationService {
       print("location : ${location.toString()}");
       print("location India: ${location[1]}");
       print("location India 2: ${location[2]}");
-      //tz.setLocalLocation(tz.getLocation('America/Detroit'));
-      tz.setLocalLocation(tz.getLocation(location.toString()));
+      tz.setLocalLocation(tz.getLocation('America/Detroit'));
+      //tz.setLocalLocation(tz.getLocation(location.toString()));
     }
   }
 
@@ -97,7 +97,7 @@ class NotificationService {
         content: NotificationContent(
             id: 12,
             channelKey: 'channelKey1',
-          title: 'Awesome',
+          title: 'Awesome Notification',
           body: 'this is Awesome Notification',
           bigPicture: "https://media.istockphoto.com/id/1194343598/vector/bright-modern-mega-sale-banner-for-advertising-discounts-vector-template-for-design-special.jpg?s=612x612&w=0&k=20&c=oxeukxA1kVLBuLtcbipu_94blsVGs9eU0V_x70wkVzA=",
           notificationLayout: NotificationLayout.BigPicture
@@ -233,25 +233,25 @@ class NotificationService {
     final groupedPlatformChannelSpecifics = await _groupedNotificationDetails();
     await notifications.show(
       0,
-      "group 1",
+      "Parth",
       "Hello",
       platformChannelSpecifics,
     );
     await notifications.show(
       1,
-      "group 1",
+      "Parth",
       "Good Morning",
       platformChannelSpecifics,
     );
     await notifications.show(
       3,
-      "group 1",
+      "Parth",
       "How Are You?",
       platformChannelSpecifics,
     );
     await notifications.show(
       4,
-      "group 2",
+      "Yash",
       "Hii",
       Platform.isIOS
           ? groupedPlatformChannelSpecifics
