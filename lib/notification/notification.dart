@@ -20,6 +20,13 @@ class _MyHomePageState extends State<MyHomePage> {
     NotificationService.init(initScheduled: true);
     listenNotification();
 
+    // NotificationService.showNotification(
+    //   id: 0,
+    //   title: "E-commerce",
+    //   body: "Hello, user this for only Testing purpose.",
+    //   //payload: "E-commerce",
+    // );
+
     NotificationService.showScheduleNotification(
             id: 1,
             title: 'Hello',
@@ -72,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    print("dfgg");
                     NotificationService.showNotification(
                       id: 0,
                       title: "E-commerce",
@@ -156,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(onPressed: () {
-                  NotificationService.getPendingNotificationCount();
+                  NotificationService.getPendingNotificationCount(context);
                   print("Pebding press");
                 }, child: const Text("Pending Notification",)),
 
@@ -164,7 +172,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   NotificationService.ActiveReq();
                 }, child: const Text("Active Notification",)),
               ],
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(onPressed: () {
+                  // NotificationService.
+                  // showGroupedNotifications(title: "parth dattani");
+                }, child: const Text("Set Weekly Notification",)),
+              ],
+            ),
           ],
         ),
       ),

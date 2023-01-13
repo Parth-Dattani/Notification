@@ -1,7 +1,9 @@
+
 import 'dart:io';
 import 'dart:ui';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:path_provider/path_provider.dart';
@@ -24,12 +26,14 @@ class NotificationService {
 
   static Future init({bool initScheduled = false}) async {
     const initializationSettingsAndroid =
-        AndroidInitializationSettings('ic_notification');
+        AndroidInitializationSettings('ic_notification',);
+
     const initializationSettingsIOS = DarwinInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
       defaultPresentAlert: true,
+
     );
     const initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
@@ -192,11 +196,21 @@ class NotificationService {
 
   }
 
-  static Future<int> getPendingNotificationCount() async {
+  static Future<ScaffoldMessengerState> getPendingNotificationCount(context) async {
     List<PendingNotificationRequest> count =
     await notifications.pendingNotificationRequests();
     print("pending count ${count.length}");
-    return count.length;
+
+return
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(
+           SnackBar(
+            content: Text(
+               "Pending Notification : ${count.length}",
+              style: const TextStyle(fontSize: 16),
+            ),
+          ));
   }
 
   static pendingReq({
@@ -259,7 +273,7 @@ class NotificationService {
     );
     await notifications.show(
       5,
-      "group 2",
+      "Parth",
       "Are You There",
       Platform.isIOS
           ? groupedPlatformChannelSpecifics
@@ -348,6 +362,7 @@ class NotificationService {
       ticker: 'ticker',
       enableLights: true,
       channelShowBadge: true,
+      sound: RawResourceAndroidNotificationSound('whistle'),
 
       // largeIcon: DrawableResourceAndroidBitmap('justwater'),
       // styleInformation: BigPictureStyleInformation(
