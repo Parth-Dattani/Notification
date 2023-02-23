@@ -95,17 +95,23 @@ class NotificationService {
     print(payload);
   }
 
+
   static awesomeNoti()async{
     String time = await AwesomeNotifications().getLocalTimeZoneIdentifier();
       AwesomeNotifications().createNotification(
+
         content: NotificationContent(
             id: 12,
             channelKey: 'channelKey1',
           title: 'Awesome Notification',
           body: 'this is Awesome Notification',
           bigPicture: "https://media.istockphoto.com/id/1194343598/vector/bright-modern-mega-sale-banner-for-advertising-discounts-vector-template-for-design-special.jpg?s=612x612&w=0&k=20&c=oxeukxA1kVLBuLtcbipu_94blsVGs9eU0V_x70wkVzA=",
-          notificationLayout: NotificationLayout.BigPicture
+          notificationLayout: NotificationLayout.BigPicture,
         ),
+        actionButtons: <NotificationActionButton>[
+          NotificationActionButton(key: 'accept', label: 'Accept'),
+          NotificationActionButton(key: 'reject', label: 'Reject'),
+        ],
      //      schedule: NotificationInterval(
      //     interval: 5,
      //     timeZone: time,

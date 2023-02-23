@@ -1,0 +1,251 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.notification"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="33" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/theonetech/Documents/fluutter_parth/notification/android/app/src/debug/AndroidManifest.xml:7:5-66
+15-->/Users/theonetech/Documents/fluutter_parth/notification/android/app/src/debug/AndroidManifest.xml:7:22-64
+16    <uses-permission android:name="android.permission.VIBRATE" /> <!-- Samsung Badge -->
+16-->/Users/theonetech/Documents/fluutter_parth/notification/android/app/src/main/AndroidManifest.xml:3:5-4:53
+16-->/Users/theonetech/Documents/fluutter_parth/notification/android/app/src/main/AndroidManifest.xml:4:9-50
+17    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+17-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-86
+17-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-83
+18    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- Sony Badge -->
+18-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-87
+18-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-84
+19    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" /> <!-- HTC Badge -->
+19-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:14:5-88
+19-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:14:22-85
+20    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+20-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:17:5-81
+20-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:17:22-78
+21    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
+21-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:18:5-83
+21-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:18:22-80
+22    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+22-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:19:5-81
+22-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:19:22-78
+23    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+23-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-81
+23-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-78
+24    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+24-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:12:5-79
+24-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:12:22-76
+25    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+25-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-77
+25-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:13:22-74
+26    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+26-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+26-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+27    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+27-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+27-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+28    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+28-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+28-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+29    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+29-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+29-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+30    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+30-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+30-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+31    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+31-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+31-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+32    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+32-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+32-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+33    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+33-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+33-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+34    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+34-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+34-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+35    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+35-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+35-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+36    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+36-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+36-->[me.leolin:ShortcutBadger:1.1.22] /Users/theonetech/.gradle/caches/transforms-3/0aeffe8c330ce053672697cdcaf56cef/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
+37
+38    <application
+39        android:name="android.app.Application"
+40        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+40-->[androidx.core:core:1.6.0] /Users/theonetech/.gradle/caches/transforms-3/ca47131158958428d9b8ccd7a987edf4/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+41        android:debuggable="true"
+42        android:icon="@mipmap/notification"
+43        android:label="notification" >
+44        <activity
+45            android:name="com.example.notification.MainActivity"
+46            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+47            android:exported="true"
+48            android:hardwareAccelerated="true"
+49            android:launchMode="singleTop"
+50            android:theme="@style/LaunchTheme"
+51            android:windowSoftInputMode="adjustResize" >
+52
+53            <!--
+54                 Specifies an Android theme to apply to this Activity as soon as
+55                 the Android process has started. This theme is visible to the user
+56                 while the Flutter UI initializes. After that, this theme continues
+57                 to determine the Window background behind the Flutter UI.
+58            -->
+59            <meta-data
+60                android:name="io.flutter.embedding.android.NormalTheme"
+61                android:resource="@style/NormalTheme" />
+62
+63            <intent-filter>
+64                <action android:name="android.intent.action.MAIN" />
+65
+66                <category android:name="android.intent.category.LAUNCHER" />
+67            </intent-filter>
+68        </activity>
+69        <!--
+70             Don't delete the meta-data below.
+71             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+72        -->
+73        <meta-data
+74            android:name="flutterEmbedding"
+75            android:value="2" />
+76        <!--
+77        <service
+78            android:name=".services.firebase.FCMService"
+79            android:exported="false">
+80            <intent-filter>
+81                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+82            </intent-filter>
+83        </service>
+84
+85        <service
+86            android:name=".services.AutoCancelService"
+87            android:stopWithTask="true" />
+88
+89        <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="true" />
+90
+91        <meta-data
+92            android:name="com.google.firebase.messaging.default_notification_channel_id"
+93            android:value="me.carda.awesome_notifications.firebase.background_channel"/>
+94        -->
+95        <receiver android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.DismissedNotificationReceiver" />
+95-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:43:9-130
+95-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:43:19-127
+96        <receiver android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.ScheduledNotificationReceiver" />
+96-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:44:9-130
+96-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:44:19-127
+97        <receiver android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.KeepOnTopActionReceiver" />
+97-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:45:9-124
+97-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:45:19-121
+98        <receiver
+98-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:46:9-58:20
+99            android:name="me.carda.awesome_notifications.notifications.broadcastReceivers.RefreshNotificationBootReceiver"
+99-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:47:13-123
+100            android:exported="false" >
+100-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:48:13-37
+101            <intent-filter>
+101-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:49:13-57:29
+102                <category android:name="android.intent.category.DEFAULT" />
+102-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:50:17-76
+102-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:50:27-73
+103
+104                <action android:name="android.intent.action.BOOT_COMPLETED" />
+104-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:52:17-79
+104-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:52:25-76
+105                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+105-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:53:17-86
+105-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:53:25-83
+106                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+106-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:54:17-84
+106-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:54:25-81
+107                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+107-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:55:17-82
+107-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:55:25-79
+108                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+108-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:56:17-82
+108-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:56:25-79
+109            </intent-filter>
+110        </receiver>
+111        <receiver
+111-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:59:9-65:20
+112            android:name="androidx.media.session.MediaButtonReceiver"
+112-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:60:13-70
+113            android:exported="false" >
+113-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:61:13-37
+114            <intent-filter>
+114-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:62:13-64:29
+115                <action android:name="android.intent.action.MEDIA_BUTTON" />
+115-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:63:17-77
+115-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:63:25-74
+116            </intent-filter>
+117        </receiver>
+118        <receiver
+118-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-18:40
+119            android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver"
+119-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-91
+120            android:exported="false" />
+120-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+121        <receiver
+121-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:19:9-21:40
+122            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+122-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-97
+123            android:exported="false" />
+123-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-37
+124        <receiver
+124-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:22:9-31:20
+125            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+125-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-101
+126            android:exported="false" >
+126-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
+127            <intent-filter>
+127-->[:flutter_local_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/flutter_local_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-30:29
+128                <action android:name="android.intent.action.BOOT_COMPLETED" />
+128-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:52:17-79
+128-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:52:25-76
+129                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+129-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:54:17-84
+129-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:54:25-81
+130                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+130-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:55:17-82
+130-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:55:25-79
+131                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+131-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:56:17-82
+131-->[:awesome_notifications] /Users/theonetech/Documents/fluutter_parth/notification/build/awesome_notifications/intermediates/merged_manifest/debug/AndroidManifest.xml:56:25-79
+132            </intent-filter>
+133        </receiver>
+134
+135        <uses-library
+135-->[androidx.window:window:1.0.0-beta04] /Users/theonetech/.gradle/caches/transforms-3/59e9b2e3588dffb6d94e0e6cf0de01d5/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+136            android:name="androidx.window.extensions"
+136-->[androidx.window:window:1.0.0-beta04] /Users/theonetech/.gradle/caches/transforms-3/59e9b2e3588dffb6d94e0e6cf0de01d5/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+137            android:required="false" />
+137-->[androidx.window:window:1.0.0-beta04] /Users/theonetech/.gradle/caches/transforms-3/59e9b2e3588dffb6d94e0e6cf0de01d5/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+138        <uses-library
+138-->[androidx.window:window:1.0.0-beta04] /Users/theonetech/.gradle/caches/transforms-3/59e9b2e3588dffb6d94e0e6cf0de01d5/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+139            android:name="androidx.window.sidecar"
+139-->[androidx.window:window:1.0.0-beta04] /Users/theonetech/.gradle/caches/transforms-3/59e9b2e3588dffb6d94e0e6cf0de01d5/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+140            android:required="false" />
+140-->[androidx.window:window:1.0.0-beta04] /Users/theonetech/.gradle/caches/transforms-3/59e9b2e3588dffb6d94e0e6cf0de01d5/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+141
+142        <provider
+142-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/theonetech/.gradle/caches/transforms-3/97887a903cde394d9024faf9d03903a7/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
+143            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+143-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/theonetech/.gradle/caches/transforms-3/97887a903cde394d9024faf9d03903a7/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
+144            android:authorities="com.example.notification.lifecycle-process"
+144-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/theonetech/.gradle/caches/transforms-3/97887a903cde394d9024faf9d03903a7/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
+145            android:exported="false"
+145-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/theonetech/.gradle/caches/transforms-3/97887a903cde394d9024faf9d03903a7/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
+146            android:multiprocess="true" />
+146-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/theonetech/.gradle/caches/transforms-3/97887a903cde394d9024faf9d03903a7/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:29:13-40
+147    </application>
+148
+149</manifest>

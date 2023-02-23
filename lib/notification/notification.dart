@@ -39,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     NotificationService.onNotifications.stream.listen(onClickedNotification);
   }
 
+
   void onClickedNotification(String? payload) {
     if(payload != null && payload.isNotEmpty){
       print("payload value $payload");
